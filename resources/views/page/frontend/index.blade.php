@@ -139,7 +139,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <img src="{{$product->gallery()->exists() ? Storage::url($product->gallery()->first()->url) :  'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='}}" alt=""
+                            <img src="{{$product->gallery()->exists() ? Storage::url($product->gallery->first()->url) :  'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='}}" alt=""
                                 class="w-full h-full object-cover object-center" />
                         </div>
                         <h5 class="text-lg font-semibold mt-4">{{$product->title}}</h5>
