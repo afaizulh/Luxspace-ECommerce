@@ -61,7 +61,7 @@ class ProductGalleryController extends Controller
         if($request->hasFile('files'))
         {
             foreach($files as $file){
-                $path = $file->store('public/gallery');
+                $path = $file->store('gallery');
 
                 ProductsGallery::create([
                     'product_id' => $product->id,
