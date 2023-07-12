@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('call_number');
             $table->string('courier')->nullable();
             $table->string('payment')->default('MIDTRANS');
-            $table->string('payment_url');
+            $table->string('payment_url')->nullable();
             $table->integer('total_price');
             $table->string('status')->default('PENDING');
             $table->timestamps();

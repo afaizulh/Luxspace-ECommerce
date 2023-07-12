@@ -50,144 +50,86 @@
                         </div>
                     </div>
 
-                    <p id="cart-empty" class="hidden text-center py-8">
-                        Ooops... Cart is empty
-                        <a href="details.html" class="underline">Shop Now</a>
-                    </p>
+                    @forelse ($carts as $item)
+                        <!-- START: ROW 1 -->
+                        <div class="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="1">
+                            <div class="px-4 flex-none">
+                                <div class="" style="width: 90px; height: 90px">
+                                    <img src="{{ $item->product->gallery()->exists() ? Storage::url($item->product->gallery->first()->url) : 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' }}"
+                                        alt="chair-1" class="object-cover rounded-xl w-full h-full" />
+                                </div>
+                            </div>
+                            <div class="px-4 w-auto flex-1 md:w-5/12">
+                                <div class="">
+                                    <h6 class="font-semibold text-lg md:text-xl leading-8">
+                                        {{ $item->product->title }}
+                                    </h6>
+                                    <span class="text-sm md:text-lg">Office Room</span>
+                                    <h6 class="font-semibold text-base md:text-lg block md:hidden">
+                                        IDR {{ number_format($item->product->price) }}
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
+                                <div class="">
+                                    <h6 class="font-semibold text-lg">IDR {{ number_format($item->product->price) }}</h6>
+                                </div>
+                            </div>
+                            <div class="px-4 w-2/12">
+                                <div class="text-center">
+                                    <form action="{{ route('cart-delete', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
 
-                    <!-- START: ROW 1 -->
-                    <div class="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="1">
-                        <div class="px-4 flex-none">
-                            <div class="" style="width: 90px; height: 90px">
-                                <img src="/frontend/images/content/chair-1.png" alt="chair-1"
-                                    class="object-cover rounded-xl w-full h-full" />
+                                        <button data-delete-item="1"
+                                            class="text-red-600 border-none focus:outline-none px-3 py-1">
+                                            X
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <div class="px-4 w-auto flex-1 md:w-5/12">
-                            <div class="">
-                                <h6 class="font-semibold text-lg md:text-xl leading-8">
-                                    Saman Kakka
-                                </h6>
-                                <span class="text-sm md:text-lg">Office Room</span>
-                                <h6 class="font-semibold text-base md:text-lg block md:hidden">
-                                    IDR 28.000.000
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
-                            <div class="">
-                                <h6 class="font-semibold text-lg">IDR 28.000.000</h6>
-                            </div>
-                        </div>
-                        <div class="px-4 w-2/12">
-                            <div class="text-center">
-                                <button data-delete-item="1" class="text-red-600 border-none focus:outline-none px-3 py-1">
-                                    X
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END: ROW 1 -->
-
-                    <!-- START: ROW 2 -->
-                    <div class="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="2">
-                        <div class="px-4 flex-none">
-                            <div class="" style="width: 90px; height: 90px">
-                                <img src="/frontend/images/content/chair-2.png" alt="chair-2"
-                                    class="object-cover rounded-xl w-full h-full" />
-                            </div>
-                        </div>
-                        <div class="px-4 w-auto flex-1 md:w-5/12">
-                            <div class="">
-                                <h6 class="font-semibold text-lg md:text-xl leading-8">
-                                    Green Seat
-                                </h6>
-                                <span class="text-sm md:text-lg">Office Room</span>
-                                <h6 class="font-semibold text-base md:text-lg block md:hidden">
-                                    IDR 28.000.000
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
-                            <div class="">
-                                <h6 class="font-semibold text-lg">IDR 12.500.000</h6>
-                            </div>
-                        </div>
-                        <div class="px-4 w-2/12">
-                            <div class="text-center">
-                                <button data-delete-item="2" class="text-red-600 border-none focus:outline-none px-3 py-1">
-                                    X
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END: ROW 2 -->
-
-                    <!-- START: ROW 3 -->
-                    <div class="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="3">
-                        <div class="px-4 flex-none">
-                            <div class="" style="width: 90px; height: 90px">
-                                <img src="/frontend/images/content/chair-3.png" alt="chair-3"
-                                    class="object-cover rounded-xl w-full h-full" />
-                            </div>
-                        </div>
-                        <div class="px-4 w-auto flex-1 md:w-5/12">
-                            <div class="">
-                                <h6 class="font-semibold text-lg md:text-xl leading-8">
-                                    Pacific
-                                </h6>
-                                <span class="text-sm md:text-lg">Office Room</span>
-                                <h6 class="font-semibold text-base md:text-lg block md:hidden">
-                                    IDR 28.000.000
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
-                            <div class="">
-                                <h6 class="font-semibold text-lg">IDR 88.800.000</h6>
-                            </div>
-                        </div>
-                        <div class="px-4 w-2/12">
-                            <div class="text-center">
-                                <button data-delete-item="3" class="text-red-600 border-none focus:outline-none px-3 py-1">
-                                    X
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END: ROW 3 -->
+                        <!-- END: ROW 1 -->
+                    @empty
+                        <p id="cart-empty" class="text-center py-8">
+                            Ooops... Cart is empty
+                            <a href="{{ route('index') }}" class="underline">Shop Now</a>
+                        </p>
+                    @endforelse
                 </div>
                 <div class="w-full md:px-4 md:w-4/12" id="shipping-detail">
                     <div class="bg-gray-100 px-4 py-6 md:p-8 md:rounded-3xl">
-                        <form action="success.html">
+                        <form action="{{ route('checkout') }}" method="POST">
+                            @csrf
+
                             <div class="flex flex-start mb-6">
                                 <h3 class="text-2xl">Shipping Details</h3>
                             </div>
 
                             <div class="flex flex-col mb-4">
                                 <label for="complete-name" class="text-sm mb-2">Complete Name</label>
-                                <input data-input type="text" id="complete-name"
+                                <input name="name" data-input type="text" id="complete-name"
                                     class="border-gray-200 border rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                                     placeholder="Input your name" />
                             </div>
 
                             <div class="flex flex-col mb-4">
                                 <label for="email" class="text-sm mb-2">Email Address</label>
-                                <input data-input type="email" id="email"
+                                <input name="email" data-input type="email" id="email"
                                     class="border-gray-200 border rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                                     placeholder="Input your email address" />
                             </div>
 
                             <div class="flex flex-col mb-4">
                                 <label for="address" class="text-sm mb-2">Address</label>
-                                <input data-input type="text" id="address"
+                                <input name="address" data-input type="text" id="address"
                                     class="border-gray-200 border rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                                     placeholder="Input your address" />
                             </div>
 
                             <div class="flex flex-col mb-4">
                                 <label for="phone-number" class="text-sm mb-2">Phone Number</label>
-                                <input data-input type="tel" id="phone-number"
+                                <input name="call_number" data-input type="tel" id="phone-number"
                                     class="border-gray-200 border rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                                     placeholder="Input your phone number" />
                             </div>
